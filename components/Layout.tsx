@@ -10,17 +10,19 @@ type Props = {
 };
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-    <div className="h-full border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
+    <div className="flex h-full flex-col justify-between border-gray-200 bg-white duration-500 dark:border-gray-700 dark:bg-gray-900">
         <Head>
             <title>{title}</title>
             <meta charSet="utf-8" />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <Header></Header>
-        <div className="h-full border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
-            {children}
+        <div>
+            <div className="relative w-full border-gray-200 bg-white p-4 duration-500 dark:border-gray-700 dark:bg-gray-900">
+                {children}
+            </div>
+            <Footer></Footer>
         </div>
-        <Footer></Footer>
     </div>
 );
 
