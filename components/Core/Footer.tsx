@@ -34,10 +34,13 @@ const Footer = () => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
     };
 
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
     return (
         <footer className="duration-500">
             <hr className="border-gray-200 duration-500 dark:border-gray-700 sm:mx-auto" />
-            <div className="order-gray-200 bg-white p-4 duration-500 dark:border-gray-700 dark:bg-gray-900 sm:flex sm:items-center sm:justify-between">
+            <div className="order-gray-200 flex flex-col items-center bg-white p-4 duration-500 dark:border-gray-700 dark:bg-gray-900 sm:flex-row sm:justify-between">
                 {/* border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900 */}
                 <span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
                     © 2023{' '}
