@@ -1,14 +1,20 @@
 import React from 'react';
-import Layout from '../components/Layout';
-import InputForm from '../components/Chat/InputForm';
-import MessageDisplayer from '../components/Chat/MessageDisplayer';
+import Head from 'next/head';
+import ChatMain from '../components/Chat/ChatMain';
 
 const ChatPage = () => {
     return (
-        <Layout title="ChatApp">
-            <MessageDisplayer></MessageDisplayer>
-            <InputForm></InputForm>
-        </Layout>
+        <div className="flex h-full flex-col justify-between border-gray-200 bg-white duration-500 dark:border-gray-700 dark:bg-gray-900">
+            <Head>
+                <title>CHAT</title>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+
+            <div className="relative h-screen max-h-screen">
+                <ChatMain></ChatMain>
+            </div>
+        </div>
     );
 };
 

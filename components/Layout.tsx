@@ -17,7 +17,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <Header></Header>
-        <div>
+        <div className="relative max-h-screen">
             <div className="relative w-full border-gray-200 bg-white p-4 duration-500 dark:border-gray-700 dark:bg-gray-900">
                 {children}
             </div>
