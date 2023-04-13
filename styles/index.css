@@ -41,10 +41,8 @@
     }
 }
 
-body {
-    height: 100vh; 
-}
-
+html,
+body,
 #__next {
-    height: 100vh;
+  @apply h-full;
 }
