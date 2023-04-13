@@ -19,9 +19,19 @@ const InputForm = (props) => {
     const handleInputChange = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value;
-
         setInputContent(fieldValue);
     };
+
+    const handleSend = async (message) => {
+        const newMessage = {
+            message: message,
+            sender: 'user',
+            direction: 'outgoing',
+        };
+        onNewMessage(message);
+    };
+
+    async function processMessageToChatGPT(chatMessage: string) {}
 
     const getRes = () => {};
 
