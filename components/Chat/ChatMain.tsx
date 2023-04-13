@@ -2,84 +2,96 @@ import React, { useEffect, useState } from 'react';
 import MessageDisplayer from './MessageDisplayer';
 import InputForm from './InputForm';
 import Footer from '../Core/Footer';
-import gett from '../../pages/index';
+
+const systemMessage = {
+    role: 'system',
+    content:
+        "Explain things like you're talking to a software professional with 2 years of experience.",
+};
+const ApiKey = process.env.OPENAI_API_KEY;
 
 const ChatMain = () => {
-    const [msgData, setMsgData] = useState([]);
-    // set the API endpoint URL
-    const endpointUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+    const [messages, setMessages] = useState([]);
 
     const handleNewMessage = async (message) => {
-        await message;
         const newMessage = {
-            message: message,
-            sender: 'user',
+            message,
             direction: 'outgoing',
+            sender: 'user',
         };
-        setMsgData([...msgData, newMessage]);
 
-        // await processMessageToChatGPT(msgData); //
+        let newMessages: Array<object> = [...messages, newMessage];
 
-        //! fake fetch
-        const loading = {
+        setMessages(newMessages);
+
+        // Initial system message to determine ChatGPT functionality
+        // How it responds, how it talks, etc.
+        const loadingMsg = {
             message: 'loading',
-            sender: 'bot',
-            direction: 'coming',
+            direction: 'outgoing',
+            sender: 'loading',
         };
-        const response = {
-            message: '123123123123',
-            sender: 'bot',
-            direction: 'coming',
-        };
-        setMsgData([...msgData, newMessage, loading]);
-        setTimeout(() => {
-            setMsgData([...msgData, newMessage, response]);
-        }, 3000);
+        setMessages([...messages, newMessage, loadingMsg]);
+        await processMessageToChatGPT(newMessages);
     };
-    useEffect(() => {}, [msgData]);
-    console.log('process.env.OPENAI_API_KEY ' + process.env.OPENAI_API_KEY);
-    gett();
+
+    const endpoint = 'https://api.openai.com/v1/chat/completions';
+    const maxTokens = 200;
 
     async function processMessageToChatGPT(chatMessages) {
+        // messages is an array of messages
+        // Format messages for chatGPT API
+        // API is expecting objects in format of { role: "user" or "assistant", "content": "message here"}
+        // So we need to reformat
+
         let apiMessages = chatMessages.map((messageObject) => {
             let role = '';
-            if (messageObject.sender === 'chatGPT') {
+            if (messageObject.sender === 'ChatGPT') {
                 role = 'assistant';
             } else {
                 role = 'user';
             }
-            return { role: role, content: messageObject.content };
+            return { role: role, content: messageObject.message };
         });
 
+        // Get the request body set up with the model we plan to use
+        // and the messages which we formatted above. We add a system message in the front to'
+        // determine how we want chatGPT to act.
         const apiRequestBody = {
             model: 'gpt-3.5-turbo',
-            messages: [...apiMessages],
+            messages: [
+                systemMessage, // The system message DEFINES the logic of our chatGPT
+                ...apiMessages, // The messages from our chat with ChatGPT
+            ],
         };
 
-        const params = {
-            prompt: 'Hello, ChatGPT!',
-            max_tokens: 50,
-            temperature: 0.7,
-        };
-
-        await fetch(endpointUrl, {
+        await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
-                Authorization: 'Bearer ' + process.env.OPENAI_API_KEY,
+                Authorization: 'Bearer ' + ApiKey,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(params),
+            body: JSON.stringify(apiRequestBody),
         })
             .then((data) => {
                 return data.json();
+                console.log(data);
             })
             .then((data) => {
                 console.log(data);
+                setMessages([
+                    ...chatMessages,
+                    {
+                        message: data.choices[0].message.content,
+                        sender: 'ChatGPT',
+                    },
+                ]);
             });
     }
+
     return (
         <div className="relative">
-            <MessageDisplayer msgData={msgData}></MessageDisplayer>
+            <MessageDisplayer msgData={messages}></MessageDisplayer>
             <div className="absolute bottom-0 w-full border-gray-200 bg-white px-4 duration-500 dark:border-gray-700 dark:bg-gray-900">
                 <InputForm onNewMessage={handleNewMessage}></InputForm>
                 <Footer></Footer>

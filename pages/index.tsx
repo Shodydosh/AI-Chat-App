@@ -13,9 +13,4 @@ const IndexPage = () => (
     </Layout>
 );
 
-export async function gett() {
-    console.log('123 ' + process.env.OPENAI_API_KEY);
-    return {};
-}
-
 export default IndexPage;

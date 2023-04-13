@@ -31,17 +31,13 @@ const InputForm = (props) => {
         onNewMessage(message);
     };
 
-    async function processMessageToChatGPT(chatMessage: string) {}
-
-    const getRes = () => {};
-
     return (
         <div className="bsolute bottom-0 left-0 w-full">
             <form onSubmit={handleSubmit}>
                 <div className="relative">
                     <textarea
                         id="search"
-                        className="scrollbar-track-gray-900 block h-14 max-h-56 w-full resize-none rounded-lg border border-gray-300 bg-gray-50 p-4 pr-16 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                        className="scrollbar-track-gray-900 block h-14 max-h-56 w-full resize-none rounded-lg border border-gray-300 bg-gray-50 p-4 pr-16 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
                         placeholder="Type here.."
                         onChange={handleInputChange}
                         value={inputContent}
@@ -54,10 +50,10 @@ const InputForm = (props) => {
                         <svg
                             stroke="currentColor"
                             fill="none"
-                            stroke-width="2"
+                            strokeWidth="2"
                             viewBox="0 0 24 24"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             className="mr-1 h-4 w-4"
                             height="1em"
                             width="1em"
