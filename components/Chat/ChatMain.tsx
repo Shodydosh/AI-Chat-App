@@ -43,7 +43,6 @@ const ChatMain = () => {
         // Format messages for chatGPT API
         // API is expecting objects in format of { role: "user" or "assistant", "content": "message here"}
         // So we need to reformat
-
         let apiMessages = chatMessages.map((messageObject) => {
             let role = '';
             if (messageObject.sender === 'ChatGPT') {
@@ -65,7 +64,7 @@ const ChatMain = () => {
             ],
         };
 
-        await fetch('https://api.openai.com/v1/chat/completions', {
+        await fetch(endpoint, {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + ApiKey,
@@ -79,6 +78,12 @@ const ChatMain = () => {
             })
             .then((data) => {
                 console.log(data);
+                const paragraphs = data.choices[0].message.content
+                    .split(/\d+\./g)
+                    .filter(Boolean)
+                    .map((p) => `<p>${p}</p>`);
+
+                console.log(paragraphs.join('\n'));
                 setMessages([
                     ...chatMessages,
                     {
