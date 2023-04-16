@@ -49,6 +49,14 @@
     .right-2-5 {
       right: 0.625rem;
     }
+    .bg-bottom-transparent-grey-900 {
+      background: transparent; 
+      background-image: linear-gradient(180deg,rgba(17, 24, 39, 0),rgb(17, 24, 39) 50%);
+    }
+    .bg-bottom-transparent-white {
+      background: transparent; 
+      background-image: linear-gradient(180deg,rgba(255, 255, 255, 0),rgb(255, 255, 255) 50%);
+    }
 }
 /* 
 html,

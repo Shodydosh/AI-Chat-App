@@ -78,12 +78,7 @@ const ChatMain = () => {
             })
             .then((data) => {
                 console.log(data);
-                const paragraphs = data.choices[0].message.content
-                    .split(/\d+\./g)
-                    .filter(Boolean)
-                    .map((p) => `<p>${p}</p>`);
 
-                console.log(paragraphs.join('\n'));
                 setMessages([
                     ...chatMessages,
                     {
@@ -97,7 +92,7 @@ const ChatMain = () => {
     return (
         <div className="relative">
             <MessageDisplayer msgData={messages}></MessageDisplayer>
-            <div className="absolute bottom-0 w-full border-gray-200 bg-white px-4 duration-500 dark:border-gray-700 dark:bg-gray-900">
+            <div className="dark:bg-bottom-transparent-grey-900 bg-bottom-transparent-white absolute bottom-0 w-full border-gray-200 bg-transparent px-4 duration-500 dark:border-gray-700">
                 <InputForm onNewMessage={handleNewMessage}></InputForm>
                 <ChatFooter></ChatFooter>
             </div>

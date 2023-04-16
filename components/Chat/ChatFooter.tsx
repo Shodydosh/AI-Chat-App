@@ -38,8 +38,8 @@ const Footer = () => {
     // flex-direction: column;
     // align-items: center;
     return (
-        <footer className="duration-500">
-            <div className="order-gray-200 h-18 flex flex-col items-center bg-white p-4 duration-500 dark:border-gray-700 dark:bg-gray-900 sm:flex-row sm:justify-between">
+        <footer className="bg-transparent duration-500">
+            <div className="order-gray-200 h-18 flex flex-col items-center p-4 duration-500 dark:border-gray-700 sm:flex-row sm:justify-between">
                 {/* border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900 */}
                 <span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
                     © 2023{' '}
