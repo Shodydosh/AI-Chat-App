@@ -37,7 +37,7 @@ const InputForm = (props) => {
                 <div className="relative">
                     <textarea
                         id="search"
-                        className="scrollbar-track-gray-900 block h-14 max-h-56 w-full resize-none rounded-lg border border-gray-300 bg-gray-50 p-4 pr-16 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                        className="block h-14 max-h-56 w-full resize-none overflow-y-auto rounded-lg border p-4 pr-16 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
                         placeholder="Type here.."
                         onChange={handleInputChange}
                         value={inputContent}
@@ -45,7 +45,7 @@ const InputForm = (props) => {
                     />
                     <button
                         type="submit"
-                        className="dark:hover:bg-grey-500 dark:focus:ring-grey-800 hover:bg-grey-700 absolute bottom-2.5 right-2.5 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300"
+                        className="dark:hover:bg-grey-500 dark:focus:ring-grey-800 hover:bg-grey-700 bottom-2-5 right-2-5 absolute rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300"
                     >
                         <svg
                             stroke="currentColor"

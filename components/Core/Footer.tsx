@@ -44,14 +44,14 @@ const Footer = () => {
                 {/* border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900 */}
                 <span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
                     © 2023{' '}
-                    <a href="https://flowbite.com/" className="hover:underline">
+                    <a href="https://github.com/Shodydosh" className="hover:underline">
                         Shodydosh™
                     </a>
                     . All Rights Reserved.
                 </span>
                 <div className="flex space-x-6 sm:mt-0 sm:justify-center">
                     <button className="p-1-5 rounded-lg text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-                        <a href="https://flowbite.com/docs/customize/dark-mode/">
+                        <a href="https://www.facebook.com/shodydosh/">
                             <svg
                                 className="h-5 w-5"
                                 fill="currentColor"
@@ -68,7 +68,7 @@ const Footer = () => {
                         <span className="sr-only">Facebook page</span>
                     </button>
                     <button className="rounded-lg p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-                        <a href="https://flowbite.com/docs/customize/dark-mode/">
+                        <a href="https://www.instagram.com/shodydosh/">
                             <svg
                                 className="h-5 w-5"
                                 fill="currentColor"
@@ -86,7 +86,7 @@ const Footer = () => {
                     </button>
 
                     <button className="rounded-lg p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
-                        <a href="https://flowbite.com/docs/customize/dark-mode/">
+                        <a href="https://github.com/Shodydosh">
                             <svg
                                 className="h-5 w-5"
                                 fill="currentColor"

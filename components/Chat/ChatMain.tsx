@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MessageDisplayer from './MessageDisplayer';
 import InputForm from './InputForm';
-import Footer from '../Core/Footer';
+import ChatFooter from './ChatFooter';
 
 const systemMessage = {
     role: 'system',
@@ -94,7 +94,7 @@ const ChatMain = () => {
             <MessageDisplayer msgData={messages}></MessageDisplayer>
             <div className="absolute bottom-0 w-full border-gray-200 bg-white px-4 duration-500 dark:border-gray-700 dark:bg-gray-900">
                 <InputForm onNewMessage={handleNewMessage}></InputForm>
-                <Footer></Footer>
+                <ChatFooter></ChatFooter>
             </div>
         </div>
     );
