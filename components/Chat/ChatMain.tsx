@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
 import MessageDisplayer from './MessageDisplayer';
+import RegenerateResponse from './RegenerateResponse';
 import InputForm from './InputForm';
 import ChatFooter from './ChatFooter';
 
@@ -8,31 +10,47 @@ const systemMessage = {
     content:
         "Explain things like you're talking to a software professional with 2 years of experience.",
 };
+const loadingMessage = {
+    message: 'loading',
+    direction: 'outgoing',
+    sender: 'loading',
+};
 const ApiKey = process.env.OPENAI_API_KEY;
 
 const ChatMain = () => {
     const [messages, setMessages] = useState([]);
+    const [isFetched, setIsFetched] = useState(false);
+    const [isFetching, setIsFetching] = useState(false);
+
+    const handleRegenerate = async (message) => {
+        const newMessages = messages.slice(-2);
+        await setMessages(newMessages);
+        console.log(messages);
+        handleNewMessage(messages[messages.length - 2].message);
+    };
 
     const handleNewMessage = async (message) => {
-        const newMessage = {
-            message,
-            direction: 'outgoing',
-            sender: 'user',
-        };
+        if (!isFetching) {
+            setIsFetching(true);
+            const newMessage = {
+                message,
+                direction: 'outgoing',
+                sender: 'user',
+            };
 
-        let newMessages: Array<object> = [...messages, newMessage];
+            let newMessages: Array<object> = [...messages, newMessage];
+            setMessages(newMessages);
 
-        setMessages(newMessages);
+            // Initial system message to determine ChatGPT functionality
+            // How it responds, how it talks, etc.
 
-        // Initial system message to determine ChatGPT functionality
-        // How it responds, how it talks, etc.
-        const loadingMsg = {
-            message: 'loading',
-            direction: 'outgoing',
-            sender: 'loading',
-        };
-        setMessages([...messages, newMessage, loadingMsg]);
-        await processMessageToChatGPT(newMessages);
+            setMessages([...messages, newMessage, loadingMessage]);
+            await processMessageToChatGPT(newMessages);
+        } else {
+            alert(
+                "I'm struggling to find the answer, please wait a moment before asking a nother one",
+            );
+        }
     };
 
     const endpoint = 'https://api.openai.com/v1/chat/completions';
@@ -74,7 +92,6 @@ const ChatMain = () => {
         })
             .then((data) => {
                 return data.json();
-                console.log(data);
             })
             .then((data) => {
                 console.log(data);
@@ -86,6 +103,9 @@ const ChatMain = () => {
                         sender: 'ChatGPT',
                     },
                 ]);
+
+                setIsFetched(true);
+                setIsFetching(false);
             });
     }
 
@@ -93,6 +113,9 @@ const ChatMain = () => {
         <div className="relative">
             <MessageDisplayer msgData={messages}></MessageDisplayer>
             <div className="dark:bg-bottom-transparent-grey-900 bg-bottom-transparent-white absolute bottom-0 w-full border-gray-200 bg-transparent px-4 duration-500 dark:border-gray-700">
+                {isFetched && (
+                    <RegenerateResponse onRegenerate={handleRegenerate}></RegenerateResponse>
+                )}
                 <InputForm onNewMessage={handleNewMessage}></InputForm>
                 <ChatFooter></ChatFooter>
             </div>

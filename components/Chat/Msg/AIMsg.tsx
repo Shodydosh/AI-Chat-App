@@ -8,6 +8,8 @@ const AIMsg = (props) => {
     expression `/d+\./g`, which matches any sequence of one or more digits followed by a period. The
     `filter(Boolean)` method is then used to remove any empty strings from the resulting array. */
     const formattedText = msg.replace(/\n/g, '<br>');
+    const sampleCode = `hello\nhello\nhello\nhi\nhello world`;
+    const cc = '```' + 'python' + '\n' + 'code' + '\n```';
 
     useEffect(() => {
         if (msg === 'loading') setIsLoading(true);
@@ -28,7 +30,13 @@ const AIMsg = (props) => {
                         {isLoading ? (
                             <Fetching></Fetching>
                         ) : (
-                            <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+                            <>
+                                <pre>
+                                    <code className="python-ncpp">{cc}</code>
+                                </pre>
+                                <br />
+                                <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+                            </>
                         )}
                     </span>
                 </div>
