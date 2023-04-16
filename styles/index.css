@@ -40,9 +40,12 @@
       background-color: #f3f4f6;
     }
 }
-
+/* 
 html,
-body,
-#__next {
-  @apply h-full;
-}
+body {
+	@apply h-screen;
+} */
+
+/* #__next {
+  height: 100%;
+} */

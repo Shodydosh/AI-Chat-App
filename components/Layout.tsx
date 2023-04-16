@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-    <div className="flex h-full flex-col justify-between border-gray-200 bg-white duration-500 dark:border-gray-700 dark:bg-gray-900">
+    <div className="flex h-screen flex-col justify-between border-gray-200 bg-white duration-500 dark:border-gray-700 dark:bg-gray-900">
         <Head>
             <title>{title}</title>
             <meta charSet="utf-8" />
