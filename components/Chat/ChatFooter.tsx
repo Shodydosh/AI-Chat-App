@@ -66,6 +66,7 @@ const Footer = () => {
                         </a>
                         <span className="sr-only">Facebook page</span>
                     </button>
+
                     <button className="rounded-lg p-1.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
                         <a href="https://www.instagram.com/shodydosh/">
                             <svg

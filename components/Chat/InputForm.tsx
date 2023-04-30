@@ -17,7 +17,6 @@ const InputForm = (props) => {
     };
 
     const handleInputChange = (e) => {
-        const fieldName = e.target.name;
         const fieldValue = e.target.value;
         setInputContent(fieldValue);
     };
