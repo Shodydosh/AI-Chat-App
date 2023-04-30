@@ -14,11 +14,13 @@ const InputForm = (props) => {
         onNewMessage(inputContent);
         event.preventDefault();
         setInputContent('');
+        console.log('form submitted ✅');
     };
 
     const handleInputChange = (e) => {
         const fieldValue = e.target.value;
         setInputContent(fieldValue);
+        console.log(fieldValue);
     };
 
     const handleSend = async (message) => {
@@ -30,6 +32,15 @@ const InputForm = (props) => {
         onNewMessage(message);
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && event.shiftKey) {
+            setInputContent(inputContent + '\n');
+            event.preventDefault();
+        } else if (event.key === 'Enter') {
+            handleSubmit(event);
+        }
+    };
+
     return (
         <div className="bsolute bottom-0 left-0 w-full">
             <form onSubmit={handleSubmit}>
@@ -39,6 +50,7 @@ const InputForm = (props) => {
                         className="block h-14 max-h-56 w-full resize-none overflow-y-auto rounded-lg border p-4 pr-16 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                         placeholder="Type here.."
                         onChange={handleInputChange}
+                        onKeyDown={handleKeyDown}
                         value={inputContent}
                         required
                     />
