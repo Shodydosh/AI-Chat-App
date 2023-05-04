@@ -20,7 +20,6 @@ const InputForm = (props) => {
     const handleInputChange = (e) => {
         const fieldValue = e.target.value;
         setInputContent(fieldValue);
-        console.log(fieldValue);
     };
 
     const handleSend = async (message) => {

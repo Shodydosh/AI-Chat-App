@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Fetching from '../Fetching';
+import CodeContainer from '../../CodeContainer';
 
 const AIMsg = (props) => {
     const { msg } = props;
@@ -31,9 +32,7 @@ const AIMsg = (props) => {
                             <Fetching></Fetching>
                         ) : (
                             <>
-                                <pre>
-                                    <code className="python-ncpp">{cc}</code>
-                                </pre>
+                                <CodeContainer />
                                 <br />
                                 <div dangerouslySetInnerHTML={{ __html: formattedText }} />
                             </>
