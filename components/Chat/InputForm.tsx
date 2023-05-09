@@ -55,7 +55,7 @@ const InputForm = (props) => {
                     />
                     <button
                         type="submit"
-                        className="dark:hover:bg-grey-500 dark:focus:ring-grey-800 hover:bg-grey-700 bottom-2-5 right-2-5 absolute rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white"
+                        className="dark:hover:bg-grey-500 dark:focus:ring-grey-800 hover:bg-grey-700 right-2-5 absolute bottom-3 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white"
                     >
                         <svg
                             stroke="currentColor"
