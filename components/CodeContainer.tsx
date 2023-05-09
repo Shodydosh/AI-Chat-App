@@ -3,7 +3,8 @@ import { CodeBlock, dracula } from 'react-code-blocks';
 import { CodeBlockProps } from 'react-code-blocks/dist/components/CodeBlock';
 
 const CodeContainer = (props) => {
-    const { code, language } = props;
+    const { code, reclanguage } = props;
+    const language = reclanguage || 'javascript';
     const displayCode =
         code ||
         `<div className={ titleClass }>

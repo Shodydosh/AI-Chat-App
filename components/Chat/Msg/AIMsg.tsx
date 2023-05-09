@@ -5,6 +5,7 @@ import CodeContainer from '../../CodeContainer';
 const AIMsg = (props) => {
     const { msg } = props;
     const [isLoading, setIsLoading] = useState(false);
+    const [codeContent, setCodeContent] = useState([]);
     /* This line of code is splitting the `msg` string into an array of paragraphs based on the regular
     expression `/d+\./g`, which matches any sequence of one or more digits followed by a period. The
     `filter(Boolean)` method is then used to remove any empty strings from the resulting array. */
@@ -15,6 +16,15 @@ const AIMsg = (props) => {
         else {
             setIsLoading(false);
             console.log(formattedText);
+
+            let start = msg.indexOf('```');
+            let end = msg.indexOf('```', start + 1);
+
+            // Extract the code block msg
+            let code = msg.substring(start + 3, end).trim();
+
+            console.log(code);
+            setCodeContent([...codeContent, code]);
         }
     }, [msg]);
 
@@ -31,7 +41,7 @@ const AIMsg = (props) => {
                             <Fetching></Fetching>
                         ) : (
                             <>
-                                <CodeContainer />
+                                <CodeContainer code={codeContent} />
                                 <br />
                                 <div dangerouslySetInnerHTML={{ __html: formattedText }} />
                             </>
