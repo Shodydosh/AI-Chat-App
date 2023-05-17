@@ -9,22 +9,35 @@ const AIMsg = (props) => {
     /* This line of code is splitting the `msg` string into an array of paragraphs based on the regular
     expression `/d+\./g`, which matches any sequence of one or more digits followed by a period. The
     `filter(Boolean)` method is then used to remove any empty strings from the resulting array. */
-    const formattedText = msg.replace(/\n/g, '<br>');
 
     useEffect(() => {
         if (msg === 'loading') setIsLoading(true);
         else {
             setIsLoading(false);
-            console.log(formattedText);
 
-            let start = msg.indexOf('```');
-            let end = msg.indexOf('```', start + 1);
+            const regex = /```([\s\S]+?)```/g;
+            let match;
+            let block = [];
 
-            // Extract the code block msg
-            let code = msg.substring(start + 3, end).trim();
+            // Extracting code blocks and text segments using regular expression
+            let lastIndex = 0;
+            while ((match = regex.exec(msg)) !== null) {
+                const code = match[1].trim();
+                const textSegment = msg.substring(lastIndex, match.index);
+                lastIndex = match.index + match[0].length;
 
-            console.log(code);
-            setCodeContent([...codeContent, code]);
+                block.push({ text: textSegment, type: 0 });
+                block.push({ text: code, type: 1 });
+            }
+
+            block.push({ text: msg.substring(lastIndex), type: 0 });
+            // block.forEach((blockdata, index) => {
+            //     console.log(blockdata.type);
+            //     console.log(blockdata.text);
+            //     console.log('------------------');
+            // });
+
+            setCodeContent(block);
         }
     }, [msg]);
 
@@ -41,9 +54,19 @@ const AIMsg = (props) => {
                             <Fetching></Fetching>
                         ) : (
                             <>
-                                <CodeContainer code={codeContent} />
-                                <br />
-                                <div dangerouslySetInnerHTML={{ __html: formattedText }} />
+                                {codeContent.map((data, index) => {
+                                    if (data.type === 1) {
+                                        return <CodeContainer code={data.text} />;
+                                    } else {
+                                        data.text = data.text.replace(/\n/g, '<br>');
+                                        return (
+                                            <div dangerouslySetInnerHTML={{ __html: data.text }} />
+                                        );
+                                    }
+                                })}
+                                {/* <CodeContainer code={codeContent} />
+                                <br /> */}
+                                {/* <div dangerouslySetInnerHTML={{ __html: formattedText }} /> */}
                             </>
                         )}
                     </span>
