@@ -58,12 +58,3 @@
       background-image: linear-gradient(180deg,rgba(255, 255, 255, 0),rgb(255, 255, 255) 50%);
     }
 }
-/* 
-html,
-body {
-	@apply h-screen;
-} */
-
-/* #__next {
-  height: 100%;
-} */
